@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #005bac;
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.news-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.large {
+    flex: 1 1 calc(50% - 10px);
+    height: 500px;
+}
+
+.small {
+    flex: 1 1 calc(25% - 10px);
+    height: 500px;
+}
+    </style>
+</head>
+<body>
+    <body>
+        <header>
+            <div class="logo">上海对外经贸大学</div>
+            <nav>
+                <ul>
+                    <li>学校概况</li>
+                    <li>机构设置</li>
+                    <li>师资队伍</li>
+                    <li>科学研究</li>
+                    <li>人才培养</li>
+                    <li>招生就业</li>
+                    <li>国际交流</li>
+                    <li>公开事项</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="news">
+                <h2>校园要闻</h2>
+                <div class="news-container">
+                    <div class="news-item large" style="background-color: #f0f0f0;"></div>
+                    <div class="news-item small" style="background-color: #d0d0d0;"></div>
+                    <div class="news-item small" style="background-color: #e0e0e0;"></div>
+                    <div class="news-item large" style="background-color: #c0c0c0;"></div>
+                    <div class="news-item large" style="background-color: #b0b0b0;"></div>
+                </div>
+            </section>
+        </main>
+</body>
+</html>
