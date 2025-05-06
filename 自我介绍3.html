@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-image: url('https://www.shuomingshu.cn/wp-content/uploads/images/2022/08/17/609c8872273444a4a1b435eb0d8f6f4e_mhvd14qa2e3.jpg'); /* 替换为你的背景图片路径 */
+            background-size: cover; /* 背景图片覆盖整个页面 */
+            background-position: center; /* 背景图片居中 */
+            background-attachment: fixed; /* 背景图片固定，滚动时不会移动 */
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明背景，方便在图片上显示内容 */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h4 a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        hr {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        ul li {
+            margin: 10px 0;
+            width: 45%;
+        }
+        ul li b {
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            line-height: 1.6;
+        }
+        .profile-picture {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .section {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .section h3 {
+            margin-top: 0;
+        }
+        .section p {
+            margin-top: 10px;
+        }
+        .section table {
+            margin-top: 10px;
+        }
+        .section ol {
+            margin-top: 10px;
+        }
+        .section ul {
+            margin-top: 10px;
+        }
+        .left-section {
+            margin-right: 10px;
+        }
+        .right-section {
+            margin-left: 10px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>闵云开</h1>
+        <h4><a href="C:\Users\Rabiorse\Desktop\js\表单.html">表单链接</a></h4>
+        <hr>
+        <div class="profile-picture">
+            <a href="https://puui.qpic.cn/vpic_cover/h3313ixny5e/h3313ixny5e_hz.jpg/1280" target="_blank">
+                <img src="https://puui.qpic.cn/vpic_cover/h3313ixny5e/h3313ixny5e_hz.jpg/1280" alt="闵云开的个人照片">
+            </a>
+        </div>
+        <div class="grid-container">
+            <div class="left-section">
+                <h3>个人信息</h3>
+                <ul>
+                    <li>
+                        <b>性别：</b>男
+                    </li>
+                    <li>
+                        <b>电话：</b><a href="http://www.baidu.com" target="_blank">17321339363</a>
+                    </li>
+                    <li>
+                        <b>邮箱：</b>1546500219@qq.com
+                    </li>
+                    <li>
+                        <b>生日：</b>2005.1.13
+                    </li>
+                    <li>
+                        <b>兴趣：</b>眼保健操
+                    </li>
+                </ul>
+            </div>
+            <div class="right-section">
+                <h3>教育背景</h3>
+                <table>
+                    <tr>
+                        <td>时间</td>
+                        <td>学校</td>
+                        <td>职务</td>
+                    </tr>
+                    <tr>
+                        <td>2025</td>
+                        <td>上海对外经贸大学</td>
+                        <td>学生</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="section">
+            <h3>工作经验</h3>
+            <ol>
+                <li>无</li>
+            </ol>
+        </div>
+        <div class="section">
+            <h3>自我介绍</h3>
+            <p>20岁<br>是学生</p>
+        </div>
+    </div>
+</body>
+</html>
