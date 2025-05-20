@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body></body>
+<script>
+    var data = [
+      { title: "apple", value: 0.24, color: "green" },
+      { title: "三星", value: 0.26, color: "yellow" },
+      { title: "华为", value: 0.13, color: "orange" },
+      { title: "锤子", value: 0.17, color: "red" },
+      { title: "小米", value: 0.08, color: "purple" },
+      { title: "其他", value: 0.12, color: "cyan" },
+    ];
+
+    var w = 800;
+    var h = 600;
+    var cx = w / 2;
+    var cy = h / 2;
+    var r = 200;
+
+    //获取canvas元素
+    var canvas = document.createElement("canvas");
+
+    //设置画布宽高
+    canvas.width = w;
+    canvas.height = h;
+    document.body.appendChild(canvas);
+
+    //获取绘图环境
+    var ctx = canvas.getContext("2d");
+    ctx.font = "18px Microsoft YaHei";
+
+    function drawit(k) {
+      //遍历数据
+      ctx.clearRect(0, 0, w, h);
+      var beginAngle = Math.PI / 6; //开始的点
+      for (var i = 0; i < data.length; i++) {
+        var item = data[i];
+        //弧度范围
+        var angle = item.value * 2 * Math.PI;
+        //结束的点
+        var endAngle = beginAngle + angle;
+
+        //绘制扇形区域
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        var radius = r;
+        if (i == k) {
+          radius += 20; // 鼠标悬停时突出显示
+        }
+        ctx.arc(cx, cy, radius, beginAngle, endAngle);
+        ctx.fillStyle = item.color;
+        ctx.fill();
+
+        //写字
+        var txtAngle = beginAngle + angle / 2;
+        if (txtAngle >= Math.PI / 2 && txtAngle < (Math.PI * 3) / 2) {
+          ctx.textAlign = "end";
+        } else {
+          ctx.textAlign = "start";
+        }
+
+        var tx = cx + (radius + 10) * Math.cos(txtAngle);
+        var ty = cy + (radius + 10) * Math.sin(txtAngle);
+        ctx.fillText(item.title + " " + item.value * 100 + "%", tx, ty);
+
+        data[i].beginAngle = beginAngle;
+        data[i].endAngle = endAngle;
+
+        beginAngle = endAngle;
+      }
+    }
+
+    drawit(-1); // 初始绘制
+    let lastk = -1;
+
+    canvas.onmousemove = function (e) {
+      let box = canvas.getBoundingClientRect();
+      let x = e.clientX;
+      let y = e.clientY;
+      let xx = x - box.left;
+      let yy = y - box.top;
+
+      let a = xx - cx;
+      let b = yy - cy;
+
+      let ang = Math.atan(b / a);
+      if (xx < cx) {
+        ang += Math.PI;
+      }
+      while (ang < 0) {
+        ang += 2 * Math.PI;
+      }
+
+      let rr = Math.sqrt(a * a + b * b);
+      if (rr <= r) {
+        //在圆里面
+        let k = data.length - 1;
+        for (let i = 0; i < data.length - 1; i++) {
+          if (ang >= data[i].beginAngle && ang <= data[i].endAngle) {
+            k = i;
+            break;
+          }
+        }
+        if (k != lastk) {
+          lastk = k;
+          drawit(k);
+        }
+      }
+    };
+
+    canvas.onmouseout = function () {
+      // 鼠标移出时恢复所有扇形的大小
+      lastk = -1;
+      drawit(-1);
+    };
+</script>
+</html>
