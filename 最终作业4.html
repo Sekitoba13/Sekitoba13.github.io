@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style type="text/css">
+/* CSS2.0样式 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+#container {
+    width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#header {
+    background: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#nav {
+    background: #333;
+    overflow: hidden;
+}
+
+#nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#nav li {
+    float: left;
+}
+
+#nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#nav a:hover {
+    background: #4a90e2;
+    color: white;
+}
+
+#content {
+    padding: 20px;
+    overflow: hidden;
+}
+
+#main {
+    float: left;
+    width: 70%;
+}
+
+#sidebar {
+    float: right;
+    width: 25%;
+    background: #f9f9f9;
+    padding: 15px;
+    border-left: 1px solid #ddd;
+}
+
+#footer {
+    clear: both;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+/* 增强版轮播样式 */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 轮播控制按钮 */
+.slide-controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.control-btn {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.control-btn.active {
+    background: #4a90e2;
+}
+
+.control-btn:hover {
+    background: #357abd;
+}
+
+/* 左右箭头 */
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.slide-arrow:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.slide-arrow.prev {
+    left: 10px;
+}
+
+.slide-arrow.next {
+    right: 10px;
+}
+
+/* 内容样式 */
+.post {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.post h2 {
+    color: #4a90e2;
+    margin-top: 0;
+}
+
+.widget {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.widget:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.widget h3 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    color: #4a90e2;
+}
+
+/* 优化后的饼图容器 */
+.pie-chart-container {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+
+#mushroomPie {
+    display: block;
+    margin: 0 auto;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* 安全提示特殊样式 */
+.safety-widget {
+    margin-top: 20px;
+    padding-top: 20px;
+    background-color: #fff8f8;
+    border: 1px solid #ffdddd;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+/* 调查表格样式 */
+.survey-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.survey-table th, .survey-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.survey-table th {
+    background-color: #f2f2f2;
+}
+
+.survey-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.survey-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.survey-btn:hover {
+    background-color: #357abd;
+}
+
+/* 图例样式 */
+.pie-legend {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.legend-item {
+    display: inline-block;
+    margin: 5px 10px;
+    font-size: 12px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+/* 投票结果显示 */
+.vote-results {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+<div id="container">
+    <div id="header">
+        <h1>蘑菇图鉴</h1>
+        <p>探索神奇的蘑菇世界</p>
+    </div>
+    
+    <div id="nav">
+        <ul>
+            <li><a href="最终作业4.html">首页</a></li>
+            <li><a href="daqingzhesan.html">大青褶伞</a></li>
+            <li><a href="neihelinhuanbinggu.html">内褐鳞环柄菇</a></li>
+            <li><a href="chunhuangbaiguisan.html">纯黄白鬼伞</a></li>
+        </ul>
+    </div>
+    
+    <div id="content">
+        <div id="main">
+            <!-- 增强版图片轮播 -->
+            <div class="slideshow-container">
+                <!-- 左右箭头 -->
+                <div class="slide-arrow prev" onclick="prevSlide()">❮</div>
+                <div class="slide-arrow next" onclick="nextSlide()">❯</div>
+                
+                <!-- 幻灯片内容 -->
+                <div class="slide active">
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.f5726e5915acf5175c8c88594f75a808?rik=GmCbtpraswjJQQ&riu=http%3a%2f%2fimage.thepaper.cn%2fwww%2fimage%2f23%2f836%2f898.jpg&ehk=M680%2f92HTml434SFY%2fd45QrT4xlQZRAcqytSYwFG77Y%3d&risl=&pid=ImgRaw&r=0" alt="大青褶伞" />
+                    <div class="slide-caption">
+                        <h3>大青褶伞</h3>
+                        <p>一种常见的毒蘑菇</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c8e54c8ff1ca04dcae2c8e76d4ac94ec?rik=bvG%2fFcAn59%2fTBQ&riu=http%3a%2f%2fbbs.sciencenet.cn%2fhome.php%3fmod%3dattachment%26filename%3d%25C8%25E2%25BA%25D6%25C1%db%bb%25B7%25B1%25FA%25B9%25BD2.jpg%26id%3d910983&ehk=7TSu3kSOId1Up2QqyQpFFmOufzEOhkm0afXcmzvo8w8%3d&risl=&pid=ImgRaw&r=0" alt="内褐鳞环柄菇" />
+                    <div class="slide-caption">
+                        <h3>内褐鳞环柄菇</h3>
+                        <p>具有独特形态的蘑菇</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://pic.huitu.com/pic/20220528/3145259_20220528120140147020_0.jpg" alt="纯黄白鬼伞" />
+                    <div class="slide-caption">
+                        <h3>纯黄白鬼伞</h3>
+                        <p>色彩鲜艳的有毒蘑菇</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播控制按钮 -->
+            <div class="slide-controls">
+                <div class="control-btn active" onclick="goToSlide(0)"></div>
+                <div class="control-btn" onclick="goToSlide(1)"></div>
+                <div class="control-btn" onclick="goToSlide(2)"></div>
+            </div>
+            
+            <div class="post">
+                <h2>欢迎来到蘑菇图鉴</h2>
+                <p>这是一个专门介绍各种蘑菇的网站，包含大青褶伞、内褐鳞环柄菇、纯黄白鬼伞等多种蘑菇的详细信息。</p>
+                <p>蘑菇是真菌界的重要成员，形态各异，既有可食用的美味品种，也有剧毒的危险种类。正确识别蘑菇种类对于野外采集至关重要。</p>
+            </div>
+            
+            <div class="post">
+                <h2>蘑菇调查</h2>
+                <p>请告诉我们您最讨厌以下哪种蘑菇：</p>
+                
+                <!-- 调查表格 -->
+                <table class="survey-table">
+                    <tr>
+                        <th>选项</th>
+                        <th>选择</th>
+                    </tr>
+                    <tr>
+                        <td>大青褶伞</td>
+                        <td><button class="survey-btn" onclick="vote(0)">选择此项</button></td>
+                    </tr>
+                    <tr>
+                        <td>内褐鳞环柄菇</td>
+                        <td><button class="survey-btn" onclick="vote(1)">选择此项</button></td>
+                    </tr>
+                    <tr>
+                        <td>纯黄白鬼伞</td>
+                        <td><button class="survey-btn" onclick="vote(2)">选择此项</button></td>
+                    </tr>
+                </table>
+                
+                <div id="voteResults" class="vote-results">
+                    <!-- 投票结果将在这里显示 -->
+                </div>
+            </div>
+        </div>
+        
+        <div id="sidebar">
+            <div class="widget">
+                <h3>关于我们</h3>
+                <p>我们是一群蘑菇爱好者，致力于分享蘑菇知识和鉴定技巧。</p>
+            </div>
+            
+            <div class="widget">
+                <h3>蘑菇讨厌度调查结果</h3>
+                <div class="pie-chart-container">
+                    <canvas id="mushroomPie" width="220" height="220"></canvas>
+                    <div class="pie-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #4a90e2;"></span>
+                            <span>大青褶伞</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #ff7f50;"></span>
+                            <span>内褐鳞环柄菇</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #9acd32;"></span>
+                            <span>纯黄白鬼伞</span>
+                        </div>
+                    </div>
+                    <div id="pieResults" class="vote-results">
+                        <!-- 饼图数据将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget safety-widget">
+                <h3>安全提示</h3>
+                <p>请勿随意食用野生蘑菇，很多毒蘑菇与可食用蘑菇非常相似。</p>
+                <p>如有误食，请立即就医并保留蘑菇样本。</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <p>&copy; 2023 蘑菇图鉴. 保留所有权利.</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+// 轮播功能变量
+var currentSlide = 0;
+var slides = document.querySelectorAll('.slide');
+var controlButtons = document.querySelectorAll('.control-btn');
+var slideInterval;
+
+// 初始化轮播
+function initSlideshow() {
+    slideInterval = setInterval(nextSlide, 5000); // 5秒切换一次
+    updateControls();
+}
+
+// 下一张幻灯片
+function nextSlide() {
+    goToSlide((currentSlide + 1) % slides.length);
+}
+
+// 上一张幻灯片
+function prevSlide() {
+    goToSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+// 跳转到指定幻灯片
+function goToSlide(n) {
+    slides[currentSlide].className = 'slide';
+    controlButtons[currentSlide].className = 'control-btn';
+    
+    currentSlide = n;
+    
+    slides[currentSlide].className = 'slide active';
+    controlButtons[currentSlide].className = 'control-btn active';
+    
+    // 重置自动轮播计时器
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+// 更新控制按钮状态
+function updateControls() {
+    for (var i = 0; i < controlButtons.length; i++) {
+        controlButtons[i].className = 'control-btn';
+    }
+    controlButtons[currentSlide].className = 'control-btn active';
+}
+
+// 投票数据
+var voteData = {
+    names: ["大青褶伞", "内褐鳞环柄菇", "纯黄白鬼伞"],
+    colors: ["#4a90e2", "#ff7f50", "#9acd32"],
+    counts: [1, 1, 1], // 初始值各1票，避免除以0
+    total: 3
+};
+
+// 投票功能
+function vote(index) {
+    voteData.counts[index]++;
+    voteData.total++;
+    updatePieChart();
+    showResults();
+    
+    // 显示投票成功消息
+    var resultDiv = document.getElementById("voteResults");
+    resultDiv.innerHTML = "<p>您选择了: <strong>" + voteData.names[index] + "</strong>。感谢参与调查！</p>";
+}
+
+// 显示投票结果
+function showResults() {
+    var pieResults = document.getElementById("pieResults");
+    var html = "<p>总投票数: " + voteData.total + "</p><ul>";
+    
+    for (var i = 0; i < voteData.counts.length; i++) {
+        var percentage = (voteData.counts[i] / voteData.total * 100).toFixed(1);
+        html += "<li>" + voteData.names[i] + ": " + percentage + "% (" + voteData.counts[i] + "票)</li>";
+    }
+    
+    html += "</ul>";
+    pieResults.innerHTML = html;
+}
+
+// 饼图实现
+function initPieChart() {
+    updatePieChart();
+    showResults();
+}
+
+function updatePieChart() {
+    var canvas = document.getElementById("mushroomPie");
+    var ctx = canvas.getContext("2d");
+    var w = canvas.width;
+    var h = canvas.height;
+    var cx = w / 2;
+    var cy = h / 2;
+    var r = 80;
+    
+    var hoveredIndex = -1;
+    
+    function drawPieChart() {
+        // 清空画布
+        ctx.clearRect(0, 0, w, h);
+        
+        var beginAngle = -Math.PI / 2; // 从12点方向开始
+        
+        // 计算每个扇形的角度
+        var angles = [];
+        for (var i = 0; i < voteData.counts.length; i++) {
+            angles.push(voteData.counts[i] / voteData.total * 2 * Math.PI);
+        }
+        
+        // 遍历数据绘制扇形
+        for (var i = 0; i < voteData.counts.length; i++) {
+            var endAngle = beginAngle + angles[i];
+            
+            // 绘制扇形
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            
+            // 如果是当前悬停的扇形，放大半径
+            var radius = (i == hoveredIndex) ? r + 10 : r;
+            ctx.arc(cx, cy, radius, beginAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = voteData.colors[i];
+            ctx.fill();
+            
+            // 保存角度信息用于交互
+            voteData[i] = {
+                beginAngle: beginAngle,
+                endAngle: endAngle
+            };
+            
+            beginAngle = endAngle;
+        }
+    }
+
+    // 鼠标交互
+    canvas.onmousemove = function(e) {
+        var rect = canvas.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        
+        // 计算鼠标相对于圆心的坐标
+        var dx = x - cx;
+        var dy = y - cy;
+        var distance = Math.sqrt(dx*dx + dy*dy);
+        
+        // 检查是否在圆内
+        if (distance <= r + 10) {
+            // 计算角度
+            var angle = Math.atan2(dy, dx);
+            if (angle < -Math.PI/2) angle += 2 * Math.PI; // 调整角度范围
+            
+            // 找出对应的扇形
+            var newHoveredIndex = -1;
+            for (var i = 0; i < voteData.counts.length; i++) {
+                if (angle >= voteData[i].beginAngle && angle <= voteData[i].endAngle) {
+                    newHoveredIndex = i;
+                    break;
+                }
+            }
+            
+            // 如果悬停的扇形变化了，重绘图
+            if (newHoveredIndex !== hoveredIndex) {
+                hoveredIndex = newHoveredIndex;
+                drawPieChart();
+            }
+        } else if (hoveredIndex !== -1) {
+            // 鼠标移出圆外
+            hoveredIndex = -1;
+            drawPieChart();
+        }
+    };
+
+    // 鼠标移出canvas时恢复
+    canvas.onmouseout = function() {
+        hoveredIndex = -1;
+        drawPieChart();
+    };
+
+    // 初始绘制
+    drawPieChart();
+}
+
+// 页面加载完成后初始化
+window.onload = function() {
+    initSlideshow();
+    initPieChart();
+};
+</script>
+</body>
+</html>
